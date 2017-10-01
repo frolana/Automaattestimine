@@ -6,27 +6,42 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
 
+import java.util.List;
+
 public class WeatherForecastTest {
 
-    WeatherForecast weatherForecast;
+    WeatherForecastService weatherForecastService;
 
     @Before
     public void setUp() throws Exception {
-        weatherForecast = new WeatherForecast();
+        weatherForecastService = new WeatherForecastService();
     }
 
     @Test
     public void testGetCurrentWeather() {
-        assertTrue(false);
+        WeatherForecastRequest request = new WeatherForecastRequest("Tallinn", "EE", "metric");
+        WeatherForecast response = weatherForecastService.getCurrentForecast(request);
+
+        assertNotNull(response);
+        assertEquals(request.getCity(), response.getCity());
+        assertEquals(request.getCountry(), response.getCountry());
     }
 
     @Test
     public void testGetThreeDaysForecast() {
-        assertTrue(false);
+        WeatherForecastRequest request = new WeatherForecastRequest("Tallinn", "EE", "metric");
+        List<WeatherForecast> response = weatherForecastService.getThreeDaysForecast(request);
+
+        assertNotNull(response);
+        assertEquals(3, response.size());
     }
 
     @Test
-    public void testGeoCordinatesExists() {
-        assertTrue(false);
+    public void testGeoCoordinatesExists() {
+        WeatherForecastRequest request = new WeatherForecastRequest("Tallinn", "EE", "metric");
+        WeatherForecast response = new WeatherForecastService().getCurrentForecast(request);
+
+        assertNotNull(response);
+        assertNotNull(response.getCoordinates());
     }
 }

@@ -5,43 +5,60 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
-
 import java.util.List;
 
 public class WeatherForecastTest {
 
-    WeatherForecastService weatherForecastService;
+    private WeatherForecastService weatherForecastService;
+    private WeatherForecastRequest commonRequest;
 
     @Before
     public void setUp() throws Exception {
         weatherForecastService = new WeatherForecastService();
+        commonRequest = new WeatherForecastRequest("Tallinn", "EE");
     }
 
     @Test
     public void testGetCurrentWeather() {
-        WeatherForecastRequest request = new WeatherForecastRequest("Tallinn", "EE", "metric");
-        WeatherForecast response = weatherForecastService.getCurrentForecast(request);
+        WeatherForecast response = weatherForecastService.getCurrentForecast(commonRequest);
 
         assertNotNull(response);
-        assertEquals(request.getCity(), response.getCity());
-        assertEquals(request.getCountry(), response.getCountry());
+    }
+
+    @Test
+    public void testGetCurrentWeatherCityAndCountryMatch() {
+        WeatherForecast response = weatherForecastService.getCurrentForecast(commonRequest);
+
+        assertEquals(commonRequest.getCity(), response.getCity());
+        assertEquals(commonRequest.getCountry(), response.getCountry());
     }
 
     @Test
     public void testGetThreeDaysForecast() {
-        WeatherForecastRequest request = new WeatherForecastRequest("Tallinn", "EE", "metric");
-        List<WeatherForecast> response = weatherForecastService.getThreeDaysForecast(request);
+        List<WeatherForecast> response = weatherForecastService.getThreeDaysForecast(commonRequest);
 
         assertNotNull(response);
         assertEquals(3, response.size());
+
+        for (WeatherForecast e : response) {
+            assertNotNull(e.getCity());
+        }
     }
 
     @Test
-    public void testGeoCoordinatesExists() {
-        WeatherForecastRequest request = new WeatherForecastRequest("Tallinn", "EE", "metric");
-        WeatherForecast response = new WeatherForecastService().getCurrentForecast(request);
+    public void testGeoCoordinatesExistsForCurrentWeather() {
+        WeatherForecast response = new WeatherForecastService().getCurrentForecast(commonRequest);
 
         assertNotNull(response);
         assertNotNull(response.getCoordinates());
+    }
+
+    @Test
+    public void testGeoCoordinatesExistsForForecast() {
+        List<WeatherForecast> response = new WeatherForecastService().getThreeDaysForecast(commonRequest);
+
+        for (WeatherForecast e : response) {
+            assertNotNull(e.getCoordinates());
+        }
     }
 }

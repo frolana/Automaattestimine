@@ -3,15 +3,15 @@ public class WeatherForecastRequest {
     private String country;
     private String metric;
 
-    public WeatherForecastRequest(String city, String country, String metric) {
+    public WeatherForecastRequest(String city, String country) {
         this.city = city;
         this.country = country;
-        this.metric = metric;
+        this.metric = "metric";
     }
 
     public String getCity() { return this.city; }
 
     public String getCountry() { return this.country; }
 
-    public String getMetric() { return this.metric; }
+    public String getUnits() { return this.metric; }
 }

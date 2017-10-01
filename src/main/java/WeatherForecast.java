@@ -5,27 +5,27 @@ import java.util.Date;
  */
 public class WeatherForecast {
 
-    private int minTemp;
-    private int maxTemp;
+    private double temp;
+    private double minTemp;
+    private double maxTemp;
     private Date date;
-    private String unit;
     private String city;
     private String country;
     private String cordinates;
 
-    public int getMinTemp() {
+    public double getMinTemp() {
         return minTemp;
     }
 
-    public void setMinTemp(int minTemp) {
+    public void setMinTemp(double minTemp) {
         this.minTemp = minTemp;
     }
 
-    public int getMaxTemp() {
+    public double getMaxTemp() {
         return maxTemp;
     }
 
-    public void setMaxTemp(int maxTemp) {
+    public void setMaxTemp(double maxTemp) {
         this.maxTemp = maxTemp;
     }
 
@@ -35,14 +35,6 @@ public class WeatherForecast {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
     }
 
     public String getCity() {
@@ -67,5 +59,13 @@ public class WeatherForecast {
 
     public void setCoordinates(String coordinates) {
         this.cordinates = coordinates;
+    }
+
+    public double getTemp() {
+        return temp;
+    }
+
+    public void setTemp(double temp) {
+        this.temp = temp;
     }
 }

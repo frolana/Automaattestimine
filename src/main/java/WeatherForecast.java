@@ -11,7 +11,7 @@ public class WeatherForecast {
     private Date date;
     private String city;
     private String country;
-    private String cordinates;
+    private String coordinates;
 
     public double getMinTemp() {
         return minTemp;
@@ -54,11 +54,11 @@ public class WeatherForecast {
     }
 
     public String getCoordinates() {
-        return cordinates;
+        return coordinates;
     }
 
     public void setCoordinates(String coordinates) {
-        this.cordinates = coordinates;
+        this.coordinates = coordinates;
     }
 
     public double getTemp() {
@@ -67,5 +67,12 @@ public class WeatherForecast {
 
     public void setTemp(double temp) {
         this.temp = temp;
+    }
+
+    @Override
+    public String toString() {
+        return date + "Weather forecast in " + city + ',' + country + ", coordinates: '" + coordinates + "': " + "Temperature: " + temp +
+                ", min:" + minTemp +
+                ", max:" + maxTemp;
     }
 }

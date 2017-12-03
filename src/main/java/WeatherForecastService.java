@@ -28,6 +28,7 @@ public class WeatherForecastService {
 
             WeatherForecast forecast = new WeatherForecast();
 
+            forecast.setDate(new java.util.Date(response.getLong("dt")*1000));
             forecast.setCity(response.getString("name"));
             forecast.setCountry(response.getJSONObject("sys").getString("country"));
             forecast.setTemp(response.getJSONObject("main").getDouble("temp"));

@@ -1,12 +1,11 @@
 import java.io.*;
-import java.nio.Buffer;
 import java.util.Arrays;
 import java.util.List;
 
 public class Main {
 
     private static String inputFile =  System.getProperty("user.dir")+"\\src\\main\\input.txt";
-    private static String outputFile = System.getProperty("user.dir")+"\\src\\main\\output.txt";
+    private static String outputDir = System.getProperty("user.dir")+"\\src\\main\\";
 
     public static void main(String[] args) {
         BufferedReader br = null;
@@ -17,12 +16,12 @@ public class Main {
             WeatherForecastRequest request = null;
             br = new BufferedReader(new InputStreamReader(System.in));
             WeatherForecastService weatherForecastService = new WeatherForecastService();
+            List<String> countryInfo = null;
 
             label:
             while (true) {
                 System.out.print("Enter a city from console(1) or read from file(2): ");
                 String choice = br.readLine();
-                List<String> countryInfo = null;
 
                 switch (choice) {
                     case "1":
@@ -47,11 +46,19 @@ public class Main {
                 }
             }
 
+            String outputFile = outputDir + countryInfo.get(0) + ".txt";
+
             fw = new FileWriter(outputFile);
             bw = new BufferedWriter(new FileWriter(outputFile));
-            List<WeatherForecast> response = weatherForecastService.getThreeDaysForecast(request);
-            for (WeatherForecast element : response) {
-                bw.write(element.toString());
+            WeatherForecast currentResponse = weatherForecastService.getCurrentForecast(request);
+            bw.write(currentResponse.toString());
+            bw.newLine();
+
+            List<WeatherForecast> threeDaysResponse = weatherForecastService.getThreeDaysForecast(request);
+            for (WeatherForecast element : threeDaysResponse) {
+                bw.write(element.getDateString() + " ");
+                bw.write("min: " + String.valueOf(element.getMinTemp()) + " ");
+                bw.write("max: " + String.valueOf(element.getMaxTemp()));
                 bw.newLine();
             }
         } catch (IOException e) {

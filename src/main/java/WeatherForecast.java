@@ -1,3 +1,5 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -29,8 +31,11 @@ public class WeatherForecast {
         this.maxTemp = maxTemp;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDate() { return date; }
+
+    public String getDateString() {
+        DateFormat outputFormatter = new SimpleDateFormat("dd.MM.yyyy");
+        return outputFormatter.format(date);
     }
 
     public void setDate(Date date) {
@@ -71,7 +76,7 @@ public class WeatherForecast {
 
     @Override
     public String toString() {
-        return date + "Weather forecast in " + city + ',' + country + ", coordinates: '" + coordinates + "': " + "Temperature: " + temp +
+        return getDateString() + " Weather forecast in " + city + ',' + country + ", coordinates: '" + coordinates + "': " + "Temperature: " + temp +
                 ", min:" + minTemp +
                 ", max:" + maxTemp;
     }

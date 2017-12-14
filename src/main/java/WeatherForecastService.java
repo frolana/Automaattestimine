@@ -17,6 +17,18 @@ public class WeatherForecastService {
         apiKey = "84ca155245fbded1dcb35c2b0d491ec9";
     }
 
+    public List<WeatherForecast> getForecastsForPlaces(List<String> places) {
+        List<WeatherForecast> forecasts = new ArrayList<>();
+        for (String place: places) {
+            List<String> countryInfo = Arrays.asList(place.split("\\s*,\\s*"));
+            WeatherForecastRequest weatherRequest = new WeatherForecastRequest(countryInfo.get(0), countryInfo.get(1));
+            forecasts.add(getCurrentForecast(weatherRequest));
+            forecasts.addAll(getThreeDaysForecast(weatherRequest));
+        }
+
+        return forecasts;
+    }
+
     public WeatherForecast getCurrentForecast(WeatherForecastRequest request)
     {
         try {

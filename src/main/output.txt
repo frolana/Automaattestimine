@@ -1,3 +1,0 @@
-Mon Nov 06 00:00:00 EET 2017Weather forecast in Moscow,RU, coordinates: '55.7522:37.6156': Temperature: 3.43, min:0.47, max:3.43
-Tue Nov 07 00:00:00 EET 2017Weather forecast in Moscow,RU, coordinates: '55.7522:37.6156': Temperature: 4.0, min:1.63, max:4.0
-Wed Nov 08 00:00:00 EET 2017Weather forecast in Moscow,RU, coordinates: '55.7522:37.6156': Temperature: 1.67, min:-6.87, max:1.67

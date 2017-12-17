@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class DataReaderRepository {
 
-    private static String inputFile = System.getProperty("user.dir") + "\\src\\main\\input.txt";
+    private static String inputFilePath = System.getProperty("user.dir") + "/resources/";
 
-    public List<String> getByUserInput() throws IOException {
+    public List<String> getDataByUserInput() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Enter a city from console(1) or read from file(2): ");
         String choice = br.readLine();
@@ -24,7 +24,7 @@ public class DataReaderRepository {
         }
         if (Objects.equals(choice, "2")) {
             try {
-                return getDataFromFile();
+                return getDataFromFile("input.txt");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -38,10 +38,10 @@ public class DataReaderRepository {
     }
 
 
-    public List<String> getDataFromFile() throws IOException {
+    public List<String> getDataFromFile(String fileName) throws IOException {
 
         List<String> countryInfo = new ArrayList<>();
-        BufferedReader fileIn = new BufferedReader(new FileReader(inputFile));
+        BufferedReader fileIn = new BufferedReader(new FileReader(inputFilePath + fileName));
         String line;
         while ((line = fileIn.readLine()) != null) {
             countryInfo.add(line);

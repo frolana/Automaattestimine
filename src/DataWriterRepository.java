@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class DataWriterRepository {
 
-    private String outputDir = System.getProperty("user.dir") + "\\src\\main\\";
+    private String outputDir = System.getProperty("user.dir") + "/resources/";
 
     public void writeDataToFile(String fileName, String data) throws IOException {
         String outputFile = outputDir + fileName;
@@ -15,7 +15,7 @@ public class DataWriterRepository {
         bw.close();
     }
 
-    public void WriteForecastsToFile(List<WeatherForecast> forecasts) throws IOException {
+    public void writeForecastsToFile(List<WeatherForecast> forecasts) throws IOException {
         Map<String, List<WeatherForecast>> groupedList = forecasts.stream().collect(Collectors.groupingBy(WeatherForecast::getCity));
 
         for (Map.Entry<String, List<WeatherForecast>> group : groupedList.entrySet()){

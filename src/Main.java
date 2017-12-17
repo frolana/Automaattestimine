@@ -9,11 +9,11 @@ public class Main {
 
             WeatherForecastService weatherForecastService = new WeatherForecastService();
             DataReaderRepository dataReaderRepository = new DataReaderRepository();
-            List<String> places = dataReaderRepository.getByUserInput();
+            List<String> places = dataReaderRepository.getDataByUserInput();
 
             List<WeatherForecast> forecasts = weatherForecastService.getForecastsForPlaces(places);
             DataWriterRepository dataWriterRepository = new DataWriterRepository();
-            dataWriterRepository.WriteForecastsToFile(forecasts);
+            dataWriterRepository.writeForecastsToFile(forecasts);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -8,6 +8,7 @@ public class Main {
         try {
 
             WeatherForecastService weatherForecastService = new WeatherForecastService();
+            RequestMaker requestMaker = new RequestMaker();
             DataReaderRepository dataReaderRepository = new DataReaderRepository();
             List<String> places = dataReaderRepository.getDataByUserInput();
 
